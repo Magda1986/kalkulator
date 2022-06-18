@@ -5,31 +5,41 @@ def dodaj(a, b):
     logging.info("wybrałeś dodawanie")
     return a + b
   
-def odejmij(c, d):
+def odejmij(a, b):
     logging.info("Wybrałeś odejmowanie")
-    return c - d
+    return a - b
 
-def mnozenie(e, f):
+def mnozenie(a, b):
     logging.info("wybrałeś mnozenie")
-    return e * f
+    return a * b
   
-def dzielenie(g, h):
+def dzielenie(a, b):
+    if b == 0: 
+        logging.error("nie dziel przez 0!!")
+        return 
     logging.info("Wybrałeś dzielenie")
-    return g / h
+    return a / b
   
+def pobierz_dane():
+    typ_obliczenia = input("Podaj działanie, posługując się odpowiednią liczbą: 1: Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: ")
+    x = float(input("Podaj pierwszą wartość:"))
+    y = float(input("Podaj drugą wartość:"))
+    return typ_obliczenia, x, y
 
-typ_obliczenia = input("Podaj działanie, posługując się odpowiednią liczbą: 1: Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: ")
-typ = {
+def main():
+    dzialanie, a, b = pobierz_dane()
+    wynik = operations[dzialanie](a, b)
+    logging.info(f"Wynik to {wynik}")
+
+operations = {
     "1": dodaj,
     "2": odejmij,
     "3": mnozenie,
     "4": dzielenie
 }
 
-x = float(input("Podaj pierwszą zmienną x:"))
-y = float(input("Podaj drugą zmienną y:"))
+main()
 
-print(f"Wynik to {typ[typ_obliczenia](x, y)}")
 
 
 
